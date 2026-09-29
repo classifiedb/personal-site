@@ -1,0 +1,29 @@
+---
+title: Why this site exists
+description: A short introduction and a test of code snippets on the site.
+date: 2026-09-28
+tags: [meta]
+draft: true
+---
+
+This is a sample post so you can see how writing and code snippets look. It is marked `draft: true`, so it only shows up while running the site locally.
+
+Here is a Python snippet:
+
+```python
+import re
+
+EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
+
+def redact(text: str) -> str:
+    """Replace email addresses with a placeholder before sending text to an AI service."""
+    return EMAIL.sub("[REDACTED_EMAIL]", text)
+
+print(redact("Contact me at someone@example.com"))
+```
+
+And a shell command:
+
+```bash
+curl -sI https://bensonjengela.com | grep -i strict-transport-security
+```

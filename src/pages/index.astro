@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured || p.data.order <= 3)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<Base>
+  <p class="eyebrow">$ whoami</p>
+  <h1>Benson Jengela</h1>
+  <p class="lead">
+    Security engineer and researcher. I secure AI systems and the pipelines that ship them,
+    from threat modeling and risk registers to CI/CD security gates.
+  </p>
+  <p>
+    I'm currently the Security Owner at CCAI, where I review every AI-touching release before it ships.
+    Previously I worked in information security at the University of Notre Dame and did graduate research
+    on privacy-preserving AI at Indiana University South Bend.
+  </p>
+  <ul class="links">
+    <li><a href="/projects">Projects →</a></li>
+    <li><a href="/resume">Resume →</a></li>
+    <li><a href={SITE.github} rel="me">GitHub</a></li>
+    <li><a href={SITE.linkedin} rel="me">LinkedIn</a></li>
+  </ul>
+
+  <div class="section-head">
+    <h2>Selected projects</h2>
+    <a href="/projects">All projects</a>
+  </div>
+  <ul class="card-list">
+    {projects.map((p) => (
+      <li class="card">
+        <h3><a href={`/projects/${p.id}`}>{p.data.title}</a></h3>
+        <p>{p.data.summary}</p>
+        <ul class="tags">{p.data.tags.map((t) => <li>{t}</li>)}</ul>
+      </li>
+    ))}
+  </ul>
+
+  {posts.length > 0 && (
+    <>
+      <div class="section-head">
+        <h2>Writing</h2>
+        <a href="/writing">All posts</a>
+      </div>
+      <ul class="card-list">
+        {posts.map((post) => (
+          <li class="card">
+            <span class="meta">{post.data.date.toISOString().slice(0, 10)}</span>
+            <h3><a href={`/writing/${post.id}`}>{post.data.title}</a></h3>
+            <p>{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</Base>

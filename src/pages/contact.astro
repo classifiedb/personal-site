@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+---
+
+<Base title="Contact" description="Get in touch with Benson Jengela.">
+  <p class="eyebrow">~/contact</p>
+  <h1>Contact</h1>
+  <p class="lead">Questions about my work, collaboration, or opportunities? I'd like to hear from you.</p>
+
+  <div class="notice">
+    The message form below is being set up. In the meantime, email me at
+    <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or reach out on
+    <a href={SITE.linkedin}>LinkedIn</a>.
+  </div>
+
+  <!-- Phase 5: this form will POST to a Cloudflare Pages Function (functions/api/contact.ts)
+       that verifies Turnstile and stores the message in D1. -->
+  <form class="form" method="post" action="/api/contact">
+    <label>Name
+      <input name="name" autocomplete="name" required maxlength="100" disabled />
+    </label>
+    <label>Email
+      <input name="email" type="email" autocomplete="email" required maxlength="200" disabled />
+    </label>
+    <label>Message
+      <textarea name="message" required maxlength="5000" disabled></textarea>
+    </label>
+    <button class="button" type="submit" disabled>Send message</button>
+  </form>
+</Base>

@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const pubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+---
+
+<Base title="Research" description="Research and publications by Benson Jengela on AI security and privacy.">
+  <p class="eyebrow">~/research</p>
+  <h1>Research</h1>
+  <p class="lead">
+    Privacy-preserving AI, AI system reliability, and the security of machine learning deployments.
+  </p>
+
+  <h2>Areas</h2>
+  <ul>
+    <li><strong>Privacy-preserving AI gateways:</strong> detecting PII, malicious prompts, and unsafe outputs in traffic between clients and AI services.</li>
+    <li><strong>AI reliability and ethical deployment:</strong> including dependency resolution with DAG algorithms to guarantee correct execution across components.</li>
+    <li><strong>Performance tradeoffs:</strong> evaluating the efficiency of compute-intensive deep learning models.</li>
+  </ul>
+
+  <h2>Publications</h2>
+  {pubs.length === 0 ? (
+    <p class="muted">Coming soon.</p>
+  ) : (
+    <ul class="card-list">
+      {pubs.map((p) => (
+        <li class="card">
+          <span class="meta">{p.data.year} · {p.data.type}</span>
+          <h3>{p.data.url ? <a href={p.data.url}>{p.data.title}</a> : p.data.title}</h3>
+          <p>{p.data.authors.join(', ')}. <em>{p.data.venue}</em>.</p>
+          {(p.data.pdf || p.data.bibtex) && (
+            <ul class="links">
+              {p.data.pdf && <li><a href={p.data.pdf}>PDF</a></li>}
+              {p.data.bibtex && <li><a href={p.data.bibtex}>BibTeX</a></li>}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

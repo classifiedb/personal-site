@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+
+const experience = [
+  {
+    role: 'Security Owner',
+    org: 'CCAI, Information Security',
+    dates: 'May 2026 – Present',
+    points: [
+      'Map AI risks, maintain the risk register, and flag new threats directly to the CTO.',
+      'Build and own software engineering and GitHub pipeline security gates for AI systems.',
+      'Flag EU AI Act compliance triggers in pull requests and escalate as required.',
+      'Own security scans and evidence collection for production incidents.',
+      'Review and approve every AI-touching release before shipment.',
+    ],
+  },
+  {
+    role: 'Information Security Intern',
+    org: 'University of Notre Dame, Office of Information Technology',
+    dates: 'Feb 2026 – May 2026',
+    points: [
+      'Conducted third-party risk assessments in accordance with HECVAT and department policy.',
+      'Created custom AI rules within the email security platform to detect and block niche phishing campaigns.',
+      'Supported security awareness initiatives, including promoting 1Password adoption across the organization.',
+    ],
+  },
+  {
+    role: 'Graduate Researcher',
+    org: 'Indiana University South Bend, Department of Computer Science',
+    dates: 'Aug 2024 – May 2026',
+    points: [
+      'Designed and implemented a Privacy-Preserving AI Secure Gateway that detects PII, malicious prompts, and unsafe outputs.',
+      'Researched AI system reliability and ethical deployment, applying DAG-based dependency resolution to ensure correct execution.',
+      'Evaluated performance tradeoffs across compute-intensive deep learning models.',
+    ],
+  },
+  {
+    role: 'Computer Consultant',
+    org: 'University of Notre Dame, Office of Information Technology',
+    dates: 'Sept 2022 – Aug 2024',
+    points: [
+      'Ensured endpoint compliance with institutional security policies across faculty and staff systems.',
+      'Authored SOC-style knowledge base documentation, improving incident response consistency.',
+      'Supported incident triage, escalation workflows, and root cause analysis.',
+    ],
+  },
+  {
+    role: 'Research Programmer',
+    org: 'University of Notre Dame, Center for Research Computing',
+    dates: 'May 2021 – Aug 2022',
+    points: [
+      'Developed secure data collection features supporting controlled research access.',
+      'Built a grant discovery crawler with structured and controlled data ingestion.',
+    ],
+  },
+];
+
+const skills = [
+  ['Security', 'Secure coding, OWASP, authentication, encryption, logging, incident response'],
+  ['Compliance', 'NIST, ISO frameworks, EU AI Act, policy documentation, risk management'],
+  ['Concepts', 'Threat modeling, vulnerability mitigation, system hardening'],
+  ['Tools', 'ServiceNow, BMC Remedy ITSM, Abnormal AI, knowledge base playbooks, monitoring workflows'],
+  ['Programming', 'Python, Java, SQL, scripting and automation'],
+];
+---
+
+<Base title="Resume" description="Resume of Benson Jengela, security engineer and researcher.">
+  <p class="eyebrow">~/resume</p>
+  <h1>Resume</h1>
+  <p class="lead">Security engineer focused on AI security, secure pipelines, and compliance.</p>
+  <!-- To offer a download, add public/Benson_Jengela_Resume.pdf and uncomment:
+  <ul class="links"><li><a href="/Benson_Jengela_Resume.pdf">Download PDF</a></li></ul> -->
+
+  <h2>Experience</h2>
+  <ol class="timeline">
+    {experience.map((job) => (
+      <li>
+        <div class="row">
+          <h3>{job.role}</h3>
+          <span class="meta">{job.dates}</span>
+        </div>
+        <div class="muted">{job.org}</div>
+        <ul>{job.points.map((p) => <li>{p}</li>)}</ul>
+      </li>
+    ))}
+  </ol>
+
+  <h2>Education</h2>
+  <ol class="timeline">
+    <li>
+      <h3>MS, Applied Mathematics and Computer Science</h3>
+      <div class="muted">Indiana University South Bend · Focus in Information Security and AI</div>
+    </li>
+    <li>
+      <h3>BS, Computer Science</h3>
+      <div class="muted">Indiana University South Bend · Mathematics minor</div>
+    </li>
+  </ol>
+
+  <h2>Skills</h2>
+  <dl>
+    {skills.map(([k, v]) => (
+      <>
+        <dt><strong>{k}</strong></dt>
+        <dd class="muted">{v}</dd>
+      </>
+    ))}
+  </dl>
+</Base>
