@@ -12,7 +12,7 @@ const { Content } = await render(post);
 ---
 
 <Base title={post.data.title} description={post.data.description}>
-  <p class="eyebrow"><a href="/writing">~/writing</a></p>
+  <p class="eyebrow"><a href="/writing/">~/writing</a></p>
   <h1>{post.data.title}</h1>
   <p class="meta">
     <time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0, 10)}</time>

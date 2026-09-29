@@ -12,7 +12,7 @@ const { Content } = await render(project);
 ---
 
 <Base title={project.data.title} description={project.data.summary}>
-  <p class="eyebrow"><a href="/projects">~/projects</a> / {project.id}</p>
+  <p class="eyebrow"><a href="/projects/">~/projects</a> / {project.id}</p>
   <h1>{project.data.title}</h1>
   <p class="lead">{project.data.summary}</p>
   <ul class="tags">{project.data.tags.map((t) => <li>{t}</li>)}</ul>

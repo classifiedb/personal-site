@@ -19,7 +19,7 @@ const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV ||
           <span class="meta">
             {post.data.date.toISOString().slice(0, 10)}{post.data.draft && ' · draft'}
           </span>
-          <h3><a href={`/writing/${post.id}`}>{post.data.title}</a></h3>
+          <h3><a href={`/writing/${post.id}/`}>{post.data.title}</a></h3>
           <p>{post.data.description}</p>
         </li>
       ))}

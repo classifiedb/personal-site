@@ -13,7 +13,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     {projects.map((p) => (
       <li class="card">
         <span class="meta">{p.data.year}</span>
-        <h3><a href={`/projects/${p.id}`}>{p.data.title}</a></h3>
+        <h3><a href={`/projects/${p.id}/`}>{p.data.title}</a></h3>
         <p>{p.data.summary}</p>
         <ul class="tags">{p.data.tags.map((t) => <li>{t}</li>)}</ul>
       </li>
